@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Radio Live | Stream Kenyan Radio Stations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00e5ff;
+            --secondary: #7b1fa2;
+            --accent: #ff4081;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #e0e0e0;
+            --card-bg: rgba(30, 30, 46, 0.7);
+            --glow: 0 0 10px rgba(0, 229, 255, 0.7);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1a2e 50%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--glow);
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(123, 31, 162, 0.2), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(0, 229, 255, 0.2), transparent 50%);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #b0b0b0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Audio Player */
+        .audio-player {
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .player-header h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-slider {
+            width: 100px;
+        }
+
+        .station-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .station-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .station-details h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .station-details p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 15px 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #b0b0b0;
+        }
+
+        /* Search & Filters */
+        .search-filters {
+            padding: 30px 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 45px;
+            border-radius: 30px;
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--light);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Stations Grid */
+        .stations-section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 8px 15px;
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--light);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .view-btn.active {
+            background: rgba(0, 229, 255, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .station-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .station-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 229, 255, 0.3);
+            border-color: rgba(0, 229, 255, 0.5);
+        }
+
+        .card-header {
+            padding: 20px 20px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        .card-title h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .card-title p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .card-body {
+            padding: 15px 20px;
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .card-detail i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .play-action {
+            padding: 8px 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .play-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .favorite-btn.active {
+            color: var(--accent);
+        }
+
+        .favorite-btn:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 60px 0;
+        }
+
+        .map-container {
+            height: 400px;
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(20, 20, 30, 0.9));
+            color: var(--light);
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .map-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 0;
+            background: rgba(10, 10, 15, 0.7);
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .api-credit {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .api-credit h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 10, 0.9);
+            padding: 40px 0 20px;
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(30, 30, 46, 0.7);
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Loading & Error States */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(0, 229, 255, 0.3);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(255, 68, 68, 0.1);
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 68, 68, 0.3);
+        }
+
+        .error-message i {
+            font-size: 3rem;
+            color: #ff4444;
+            margin-bottom: 20px;
+        }
+
+        .error-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff4444;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .stations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-top: 1px solid rgba(0, 229, 255, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filter-options {
+                justify-content: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .stations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .player-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .station-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h1>Kenya Radio Live</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#stations">Stations</a>
+                    <a href="#map">Map</a>
+                    <a href="#favorites">Favorites</a>
+                    <a href="#about">About</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Stream Kenyan Radio Stations</h2>
+            <p>Discover and listen to over 100 radio stations from across Kenya. From Nairobi to Mombasa, find your favorite stations in one place.</p>
+            <div class="cta-buttons">
+                <a href="#stations" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Explore Stations
+                </a>
+                <a href="#map" class="btn btn-secondary">
+                    <i class="fas fa-map-marked-alt"></i> View Map
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Player -->
+    <div class="container">
+        <div class="audio-player">
+            <div class="player-header">
+                <h3>Now Playing</h3>
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" class="volume-slider" min="0" max="100" value="80">
+                </div>
+            </div>
+            <div class="station-info">
+                <img src="https://via.placeholder.com/60" alt="Station Logo" class="station-logo">
+                <div class="station-details">
+                    <h4>Select a station to play</h4>
+                    <p>Frequency • Location • Genre</p>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="play-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <div class="time-display">
+                <span>0:00</span>
+                <span>0:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <section class="search-filters" id="stations">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search stations by name, location, or genre...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="filter-options">
+                <select class="filter-select">
+                    <option value="">All Regions</option>
+                    <option value="nairobi">Nairobi</option>
+                    <option value="mombasa">Mombasa</option>
+                    <option value="kisumu">Kisumu</option>
+                    <option value="nakuru">Nakuru</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">All Languages</option>
+                    <option value="swahili">Swahili</option>
+                    <option value="english">English</option>
+                    <option value="kikuyu">Kikuyu</option>
+                    <option value="luo">Luo</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">All Genres</option>
+                    <option value="news">News</option>
+                    <option value="music">Music</option>
+                    <option value="sports">Sports</option>
+                    <option value="talk">Talk</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stations Grid -->
+    <section class="stations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Stations</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active"><i class="fas fa-th"></i></button>
+                    <button class="view-btn"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            
+            <div class="stations-grid" id="stations-container">
+                <!-- Stations will be loaded here via JavaScript -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading stations...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <div class="section-header">
+                <h2>Station Distribution Map</h2>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map"></i>
+                    <h3>Kenya Radio Stations Map</h3>
+                    <p>Interactive map showing radio station distribution across Kenya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Kenya Radio Live</h2>
+                <p>Kenya Radio Live is a modern web application that brings together radio stations from across Kenya into one convenient platform. Our mission is to make Kenyan radio accessible to everyone, everywhere.</p>
+                <p>Whether you're looking for news, music, sports, or talk shows, you can find your favorite stations and discover new ones with our easy-to-use interface.</p>
+                
+                <div class="api-credit">
+                    <h4>API Source</h4>
+                    <p>This application uses the public API provided by Casper Tech at <strong>https://casper-tech-apis.vercel.app/api/radio/kenya</strong> to fetch radio station data. The API is regularly updated with new stations and information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Kenya Radio Live</h4>
+                    <p>Your gateway to Kenyan radio stations. Stream live broadcasts from across the country.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#stations">Stations</a></li>
+                        <li><a href="#map">Map</a></li>
+                        <li><a href="#favorites">Favorites</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Kenya Radio Live. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Sample station data (in a real app, this would come from the API)
+        const sampleStations = [
+            {
+                id: 1,
+                name: "Capital FM",
+                frequency: "98.4 FM",
+                location: "Nairobi",
+                genre: "Music, News",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream1"
+            },
+            {
+                id: 2,
+                name: "Radio Jambo",
+                frequency: "97.5 FM",
+                location: "Nairobi",
+                genre: "Music, Entertainment",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream2"
+            },
+            {
+                id: 3,
+                name: "Kiss FM",
+                frequency: "100.0 FM",
+                location: "Nairobi",
+                genre: "Music, Talk",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream3"
+            },
+            {
+                id: 4,
+                name: "Classic 105",
+                frequency: "105.2 FM",
+                location: "Nairobi",
+                genre: "Music",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream4"
+            },
+            {
+                id: 5,
+                name: "Radio Maisha",
+                frequency: "93.3 FM",
+                location: "Nairobi",
+                genre: "News, Talk",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream5"
+            },
+            {
+                id: 6,
+                name: "Milele FM",
+                frequency: "104.8 FM",
+                location: "Mombasa",
+                genre: "Music, Entertainment",
+                logo: "https://via.placeholder.com/60",
+                streamUrl: "https://example.com/stream6"
+            }
+        ];
+
+        // Function to display stations
+        function displayStations(stations) {
+            const container = document.getElementById('stations-container');
+            container.innerHTML = '';
+            
+            if (stations.length === 0) {
+                container.innerHTML = `
+                    <div class="error-message" style="grid-column: 1 / -1;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>No stations found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            stations.forEach(station => {
+                const card = document.createElement('div');
+                card.className = 'station-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${station.logo}" alt="${station.name} Logo" class="card-logo">
+                        <div class="card-title">
+                            <h3>${station.name}</h3>
+                            <p>${station.frequency}</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-details">
+                            <div class="card-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${station.location}</span>
+                            </div>
+                            <div class="card-detail">
+                                <i class="fas fa-music"></i>
+                                <span>${station.genre}</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="play-action" data-id="${station.id}">
+                                <i class="fas fa-play"></i> Play Now
+                            </button>
+                            <button class="favorite-btn" data-id="${station.id}">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            // Add event listeners to play buttons
+            document.querySelectorAll('.play-action').forEach(button => {
+                button.addEventListener('click', function() {
+                    const stationId = this.getAttribute('data-id');
+                    playStation(stationId);
+                });
+            });
+            
+            // Add event listeners to favorite buttons
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.querySelector('i').classList.toggle('far');
+                    this.querySelector('i').classList.toggle('fas');
+                });
+            });
+        }
+
+        // Function to play a station
+        function playStation(stationId) {
+            const station = sampleStations.find(s => s.id == stationId);
+            if (!station) return;
+            
+            // Update player UI
+            document.querySelector('.station-logo').src = station.logo;
+            document.querySelector('.station-details h4').textContent = station.name;
+            document.querySelector('.station-details p').textContent = `${station.frequency} • ${station.location} • ${station.genre}`;
+            
+            // In a real app, we would set the audio source here
+            // For demo purposes, we'll just simulate playing
+            const playBtn = document.querySelector('.play-btn');
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            
+            // Show a message
+            alert(`Now playing: ${station.name}. In a real application, this would stream from: ${station.streamUrl}`);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display sample stations
+            displayStations(sampleStations);
+            
+            // Play button functionality
+            document.querySelector('.play-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    // In a real app, we would start playing the audio here
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    // In a real app, we would pause the audio here
+                }
+            });
+            
+            // Search functionality
+            document.querySelector('.search-box input').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredStations = sampleStations.filter(station => 
+                    station.name.toLowerCase().includes(searchTerm) ||
+                    station.location.toLowerCase().includes(searchTerm) ||
+                    station.genre.toLowerCase().includes(searchTerm)
+                );
+                displayStations(filteredStations);
+            });
+            
+            // Filter functionality
+            document.querySelectorAll('.filter-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    // In a real app, we would implement more complex filtering
+                    // For now, we'll just use the search functionality
+                    const searchTerm = document.querySelector('.search-box input').value.toLowerCase();
+                    const filteredStations = sampleStations.filter(station => 
+                        station.name.toLowerCase().includes(searchTerm) ||
+                        station.location.toLowerCase().includes(searchTerm) ||
+                        station.genre.toLowerCase().includes(searchTerm)
+                    );
+                    displayStations(filteredStations);
+                });
+            });
+            
+            // View toggle functionality
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real app, we would change the layout here
+                    const container = document.getElementById('stations-container');
+                    if (this.querySelector('i').classList.contains('fa-list')) {
+                        container.classList.add('list-view');
+                    } else {
+                        container.classList.remove('list-view');
+                    }
+                });
+            });
+        });
+
+        // In a real application, we would fetch data from the API like this:
+        /*
+        async function fetchStations() {
+            try {
+                const response = await fetch('https://casper-tech-apis.vercel.app/api/radio/kenya');
+                const stations = await response.json();
+                displayStations(stations);
+            } catch (error) {
+                console.error('Error fetching stations:', error);
+                document.getElementById('stations-container').innerHTML = `
+                    <div class="error-message" style="grid-column: 1 / -1;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>Failed to load stations</h3>
+                        <p>Please check your connection and try again.</p>
+                    </div>
+                `;
+            }
+        }
+        */
+    </script>
+</body>
+</html>
