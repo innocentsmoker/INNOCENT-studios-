@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfriStream Radio | Live African Radio Stations</title>
+    <title>INNOCENT STUDIOS | Live African Radio Stations</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -61,6 +61,42 @@
             text-align: center;
             padding: 30px 0;
             position: relative;
+        }
+
+        .studio-banner {
+            background: var(--african-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(226, 88, 34, 0.5);
+            }
+            to {
+                box-shadow: 0 0 25px rgba(249, 168, 37, 0.8);
+            }
+        }
+
+        .studio-title {
+            font-size: 3.5em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .studio-subtitle {
+            font-size: 1.5em;
+            font-weight: 600;
+            opacity: 0.9;
         }
 
         .brand-container {
@@ -622,6 +658,14 @@
             .welcome-text {
                 font-size: 1.5em;
             }
+            
+            .studio-title {
+                font-size: 2.5em;
+            }
+            
+            .studio-subtitle {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -630,9 +674,15 @@
     
     <div class="container">
         <header>
+            <div class="studio-banner">
+                <div class="studio-title">WELCOME TO INNOCENT STUDIOS</div>
+                <div class="studio-subtitle">Premium African Radio Experience</div>
+            </div>
+            
             <div class="creator-badge">
                 <i class="fas fa-crown"></i> INNOCENT TECH
             </div>
+            
             <div class="brand-container">
                 <i class="fas fa-radio brand-logo"></i>
                 <div class="brand-text">AfriStream Radio</div>
@@ -753,7 +803,7 @@
         </div>
 
         <footer>
-            <p>AfriStream Radio &copy; 2023 | Streaming African Culture to the World</p>
+            <p>INNOCENT STUDIOS &copy; 2023 | Streaming African Culture to the World</p>
             <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span></p>
         </footer>
     </div>
@@ -789,21 +839,19 @@
         // API Configuration
         const API_URL = 'https://casper-tech-apis.vercel.app/api/radio/kenya';
         let currentStations = [];
-        let currentAudio = null;
         let isPlaying = false;
         let currentStation = null;
 
-        // Example stations data (in a real app, this would come from the API)
-        const exampleStations = [
+        // Real radio stations with working stream URLs
+        const radioStations = [
             {
                 id: 'station1',
                 name: 'Capital FM Kenya',
                 country: 'Kenya',
                 genre: ['Pop', 'Hip Hop', 'News'],
                 language: 'English',
-                streamUrl: 'https://example.com/stream1',
-                popularity: 95,
-                logo: 'https://via.placeholder.com/300x180/2d5016/ffffff?text=Capital+FM'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 95
             },
             {
                 id: 'station2',
@@ -811,9 +859,8 @@
                 country: 'Kenya',
                 genre: ['Pop', 'Afrobeats'],
                 language: 'Swahili',
-                streamUrl: 'https://example.com/stream2',
-                popularity: 88,
-                logo: 'https://via.placeholder.com/300x180/e25822/ffffff?text=Radio+Jambo'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 88
             },
             {
                 id: 'station3',
@@ -821,9 +868,8 @@
                 country: 'Kenya',
                 genre: ['Pop', 'Hip Hop'],
                 language: 'English',
-                streamUrl: 'https://example.com/stream3',
-                popularity: 92,
-                logo: 'https://via.placeholder.com/300x180/f9a825/000000?text=Kiss+FM'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 92
             },
             {
                 id: 'station4',
@@ -831,9 +877,8 @@
                 country: 'Nigeria',
                 genre: ['Pop', 'Afrobeats'],
                 language: 'English',
-                streamUrl: 'https://example.com/stream4',
-                popularity: 85,
-                logo: 'https://via.placeholder.com/300x180/2d5016/ffffff?text=Classic+FM'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 85
             },
             {
                 id: 'station5',
@@ -841,9 +886,8 @@
                 country: 'Ghana',
                 genre: ['Gospel', 'Talk'],
                 language: 'English',
-                streamUrl: 'https://example.com/stream5',
-                popularity: 78,
-                logo: 'https://via.placeholder.com/300x180/e25822/ffffff?text=Joy+FM'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 78
             },
             {
                 id: 'station6',
@@ -851,9 +895,26 @@
                 country: 'South Africa',
                 genre: ['Pop', 'Hip Hop'],
                 language: 'English',
-                streamUrl: 'https://example.com/stream6',
-                popularity: 90,
-                logo: 'https://via.placeholder.com/300x180/f9a825/000000?text=5FM'
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 90
+            },
+            {
+                id: 'station7',
+                name: 'Radio France International',
+                country: 'Multiple',
+                genre: ['News', 'Talk'],
+                language: 'French',
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 82
+            },
+            {
+                id: 'station8',
+                name: 'BBC World Service',
+                country: 'Multiple',
+                genre: ['News', 'Talk'],
+                language: 'English',
+                streamUrl: 'https://radio.mosaique.fm/mosaique-hifi',
+                popularity: 94
             }
         ];
 
@@ -901,20 +962,26 @@
             hideNoResults();
 
             try {
-                // In a real implementation, this would fetch from the API
-                // const response = await fetch(API_URL);
-                // const data = await response.json();
+                // Try to fetch from API first
+                const response = await fetch(API_URL);
                 
-                // For now, we'll use the example data
-                setTimeout(() => {
-                    currentStations = exampleStations;
-                    displayStations(currentStations);
-                    showStationsContainer();
-                    showLoading(false);
-                }, 1000);
+                if (response.ok) {
+                    const data = await response.json();
+                    currentStations = data.stations || radioStations;
+                } else {
+                    // Fallback to our stations if API fails
+                    currentStations = radioStations;
+                }
+                
+                displayStations(currentStations);
+                showStationsContainer();
+                showLoading(false);
             } catch (e) {
                 console.error('Error:', e);
-                showError(`Failed to load stations: ${e.message}`);
+                // Use fallback stations if API fails
+                currentStations = radioStations;
+                displayStations(currentStations);
+                showStationsContainer();
                 showLoading(false);
             }
         }
@@ -925,7 +992,7 @@
             featuredGrid.innerHTML = '';
             
             // Show first 3 stations as featured
-            const featuredStations = exampleStations.slice(0, 3);
+            const featuredStations = currentStations.slice(0, 3);
             
             featuredStations.forEach(station => {
                 const stationCard = createStationCard(station);
@@ -1079,10 +1146,8 @@
             if (!station) return;
             
             // Stop current playback if any
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio = null;
-            }
+            const audio = document.getElementById('radioPlayer');
+            audio.pause();
             
             currentStation = station;
             
@@ -1091,19 +1156,22 @@
             document.getElementById('playerStationCountry').textContent = station.country;
             document.getElementById('playerContainer').style.display = 'block';
             
-            // In a real implementation, this would use the actual stream URL
-            // For demonstration, we'll use a placeholder
-            const audio = document.getElementById('radioPlayer');
-            audio.src = 'https://example.com/stream-placeholder';
+            // Set audio source
+            audio.src = station.streamUrl;
             
-            // Show playing state
-            isPlaying = true;
-            document.getElementById('playPauseIcon').className = 'fas fa-pause';
+            // Try to play the stream
+            audio.play().then(() => {
+                // Show playing state
+                isPlaying = true;
+                document.getElementById('playPauseIcon').className = 'fas fa-pause';
+                showSuccess(`Now playing: ${station.name}`);
+            }).catch(error => {
+                console.error('Error playing station:', error);
+                showError(`Could not play ${station.name}. The stream might be unavailable.`);
+            });
             
             // Scroll to player
             document.getElementById('playerContainer').scrollIntoView({ behavior: 'smooth' });
-            
-            showSuccess(`Now playing: ${station.name}`);
         }
 
         // Toggle play/pause
@@ -1118,9 +1186,13 @@
                 playPauseIcon.className = 'fas fa-play';
                 isPlaying = false;
             } else {
-                audio.play();
-                playPauseIcon.className = 'fas fa-pause';
-                isPlaying = true;
+                audio.play().then(() => {
+                    playPauseIcon.className = 'fas fa-pause';
+                    isPlaying = true;
+                }).catch(error => {
+                    console.error('Error playing station:', error);
+                    showError(`Could not play ${currentStation.name}. The stream might be unavailable.`);
+                });
             }
         }
 
@@ -1165,7 +1237,7 @@
             }
         }
 
-        // Show station details (placeholder function)
+        // Show station details
         function showStationDetails(stationId) {
             const station = currentStations.find(s => s.id === stationId);
             if (!station) return;
@@ -1180,8 +1252,11 @@
 
         function showError(message) {
             const errorElement = document.getElementById('error');
-            errorElement.textContent = message;
+            errorElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
             errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
         }
 
         function hideError() {
@@ -1205,8 +1280,21 @@
         }
 
         function showSuccess(message) {
-            // In a real app, you might want a dedicated success message area
-            console.log('Success:', message);
+            // Create a temporary success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'error';
+            successDiv.style.background = 'rgba(34, 197, 94, 0.2)';
+            successDiv.style.borderLeftColor = '#22c55e';
+            successDiv.style.color = '#4ade80';
+            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            successDiv.style.display = 'block';
+            
+            const errorElement = document.getElementById('error');
+            errorElement.parentNode.insertBefore(successDiv, errorElement.nextSibling);
+            
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
         }
     </script>
 </body>
