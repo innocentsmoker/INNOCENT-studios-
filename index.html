@@ -610,6 +610,41 @@
             border-radius: 2px;
         }
 
+        /* Team Explore Acknowledgment */
+        .team-explore-section {
+            background: linear-gradient(135deg, rgba(226, 88, 34, 0.1) 0%, rgba(45, 80, 22, 0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            border: 1px solid rgba(226, 88, 34, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-explore-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--african-gradient-light);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-explore-text {
+            font-size: 1.2em;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .team-explore-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         footer {
             text-align: center;
             padding: 30px 0;
@@ -665,6 +700,14 @@
             
             .studio-subtitle {
                 font-size: 1.2em;
+            }
+            
+            .team-explore-title {
+                font-size: 1.8em;
+            }
+            
+            .team-explore-text {
+                font-size: 1.1em;
             }
         }
     </style>
@@ -796,6 +839,21 @@
             <div class="stations-grid" id="stationsGrid"></div>
         </div>
 
+        <!-- Team Explore Acknowledgment Section -->
+        <div class="team-explore-section">
+            <h2 class="team-explore-title">Special Thanks to Team Explore</h2>
+            <p class="team-explore-text">
+                We extend our heartfelt gratitude to <span class="team-explore-highlight">Team Explore</span> for their invaluable 
+                collaboration and support in bringing this African radio streaming experience to life. 
+                Their dedication to innovation and exploration has been instrumental in creating a platform 
+                that connects cultures through the universal language of music and radio.
+            </p>
+            <p class="team-explore-text" style="margin-top: 15px;">
+                Together, we're exploring new frontiers in digital media and bringing the vibrant sounds 
+                of Africa to listeners worldwide. Thank you for being an essential part of this journey!
+            </p>
+        </div>
+
         <div class="no-results" id="noResults">
             <i class="fas fa-radio"></i>
             <h3>No stations found</h3>
@@ -803,7 +861,7 @@
         </div>
 
         <footer>
-            <p>INNOCENT STUDIOS &copy; 2025 | Streaming African Culture to the World</p>
+            <p>INNOCENT STUDIOS &copy;2025 | Streaming African Culture to the World</p>
             <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span></p>
         </footer>
     </div>
@@ -1298,4 +1356,4 @@
         }
     </script>
 </body>
-</html>
+                                                                   </html>
